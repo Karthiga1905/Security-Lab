@@ -1,0 +1,41 @@
+import java.util.*;
+class PlayfairCipher {
+ public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+ char[][] a = {
+ {'P','L','A','Y','F'},
+ {'I','R','B','C','D'},
+ {'E','G','H','K','M'},
+ {'N','O','Q','S','T'},
+ {'U','V','W','X','Z'}
+ };
+ System.out.print("Enter text:");
+ String s = sc.nextLine().toUpperCase().replace(" ", "");
+ System.out.println("Key: PLAY FAIR");
+ String ans = "";
+ for (int k = 0; k < s.length(); k += 2) {
+ int p = 0, q = 0;
+ for (int i = 0; i < 25; i++) {
+ if (a[i/5][i%5] == s.charAt(k))
+ p = i;
+ if (a[i/5][i%5] == s.charAt(k+1))
+ q = i;
+ }
+ int r1 = p/5, c1 = p%5;
+ int r2 = q/5, c2 = q%5;
+ if (r1 == r2) {
+ ans += a[r1][(c1+1)%5];
+ ans += a[r2][(c2+1)%5];
+ }
+ else if (c1 == c2) {
+ ans += a[(r1+1)%5][c1];
+ ans += a[(r2+1)%5][c2];
+ }
+ else {
+ ans += a[r1][c2];
+ ans += a[r2][c1];
+ }
+ }
+ System.out.println("Encrypted:"+ans);
+ }
+}
