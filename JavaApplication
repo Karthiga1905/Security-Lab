@@ -1,0 +1,14 @@
+public class JavaApplication {
+ public static void main(String[] args) { 
+ String s = "MEET AT GATE";
+ char[] str = s.toCharArray(); 
+ for (int i = 0; i < str.length; i++) {
+ char ch = str[i]; 
+ if (Character.isLetter(ch)) {
+ char base = Character.isUpperCase(ch) ? 'A' : 'a';
+ str[i] = (char) ((ch - base + 3) % 26 + base);
+ }
+ }
+ System.out.println(new String(str));
+ }
+}
